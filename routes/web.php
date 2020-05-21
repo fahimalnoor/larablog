@@ -38,3 +38,5 @@ Route::get('/home/myposts/delete/{id}', 'PostController@myPostDelete');
 //deleting my own post
 Route::get('/home/profile/delete/{email}', 'HomeController@delete');
 
+//update profile
+Route::post('/home/profile/update', 'HomeController@update')->name('proup');

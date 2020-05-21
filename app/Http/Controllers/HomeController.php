@@ -34,6 +34,28 @@ class HomeController extends Controller
         return view('profile');
     }
 
+    public function update(Request $req){
+
+    $data=array();
+
+      $data['name'] = $req->name;
+      $data['email'] = $req->email;
+     
+            //  DB::table('users')
+            //     ->where('email', $email)
+            //     ->update($data);
+                //return Redirect::to('/admin/profile');
+        $update = DB::table('users')->where('email', $data['email'])->limit(1)->update([ 'name' => $data['name'], 'email' => $data['email']]); 
+        
+        if($update){
+            echo "Profile Updated!";
+        }else{
+            echo "Updating Failed!";
+        }
+
+    }
+
+
     public function delete($email)
     {
         $dlt = DB::table('users')->where('email', $email)->delete();
