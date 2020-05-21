@@ -81,7 +81,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
+                @auth
+                    Welcome, {{ Auth::user()->name}}
+                @else
                     Blogging Management System
+                @endauth
                 </div>
             </div>
         </div>

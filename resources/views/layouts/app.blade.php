@@ -49,21 +49,81 @@
                                 </li>
                             @endif
                         @else
+
+                            <li class="nav-item">
+                            <div class="nav-item" aria-labelledby="nav-item">
+                
+                                    <a class="nav-link" href="{{ route('home') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('home-form').submit();">
+                                        {{ __('Home') }}
+                                    </a>
+
+                                    
+                            </li>
+
+                            <li class="nav-item">
+
+                            <a class="nav-link" href="{{ route('allposts') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('allposts-form').submit();">
+                                        {{ __('All Posts') }}
+                                    </a>
+                                </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                
+                                    <a class="dropdown-item" href="{{ route('profile') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('profile-form').submit();">
+                                        {{ __('Profile') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('newpost') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('newpost-form').submit();">
+                                        {{ __('Create New Post') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ url('home/myposts/'.Auth::user()->email) }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('myposts-form').submit();">
+                                        {{ __('Your Posts') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
+                                    <form id="home-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="profile-form" action="{{ route('profile') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="newpost-form" action="{{ route('newpost') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="allposts-form" action="{{ route('allposts') }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <form id="myposts-form" action="{{ url('home/myposts/'.Auth::user()->email) }}" method="GET" style="display: none;">
+                                        @csrf
+                                    </form>
+                        
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    
+
                                 </div>
                             </li>
                         @endguest
